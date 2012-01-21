@@ -6,10 +6,11 @@ This plugin let you add a `alias` key to your schema and create getter and sette
 Plugin is intended to write short-keys for you documents on the DB but let you use long, descriptive name when reading fetched documents.
 This will result in less storage needed to memorize your data having no need to remember short key meanings.
 
+## Schema Example
 
 Take this schema as example:
 
-```
+```javascript
 var mongoose = require('mongoose);
 var fieldsAliasPlugin = require('mongoose-aliasfield');
 
@@ -33,7 +34,7 @@ PersonSchema.plugin(fieldsAliasPlugin);
 
 Now that your `schema` is created you can use alias field name to describe an instance of your model
 
-```
+```javascript
 var person = new Person({
 	'timestamp'	: new Date(),
 	'name'		: 'Jhon',
@@ -48,7 +49,7 @@ person.save();
 
 Even getters will run out of the box
 
-```
+```javascript
 var full_name = person.name+' '+person.surname;
 ```
 
@@ -56,7 +57,7 @@ var full_name = person.name+' '+person.surname;
 
 The only limitation in setters and getters is that you can'y use partial path for nested properties
 
-```
+```javascript
 /*THIS WON'T ACT AS EXPECTED!*/
 var user_profile = person.profile;
 ```
@@ -68,7 +69,7 @@ Person.find({'name': 'Jhon'}, function(err,people){
 	console.log( people.toAliasedFieldsObject() );
 });
 
-```
+```javascript
 Your models gain a method called `toAliasedFieldsObject` which return a long-descriptive version of your docs:
 
 ```
