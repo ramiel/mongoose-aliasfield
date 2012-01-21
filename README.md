@@ -81,3 +81,7 @@ Your models gain a method called `toAliasedFieldsObject` which return a long-des
 	}
 }
 ```
+
+## Author
+
+Fabrizio 'ramiel' Ruggeri
