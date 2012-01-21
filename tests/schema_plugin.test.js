@@ -1,9 +1,4 @@
-var vows = require('vows'),
-	assert = require('assert'),
-	commons = require('../lib/commons'),
-	types = require('../lib/types'),
-	fieldsAliasPlugin = require('mongoose-aliasfield')
-	events = require('events'),
+var fieldsAliasPlugin = require('../lib/field-alias-plugin'),
 	//datasource = require('../lib/models/datasource'),
 	//mongoose = datasource.mongoose,
 	mongoose = require('mongoose'),

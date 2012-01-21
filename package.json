@@ -3,9 +3,10 @@
 	, "description":  "Field alias support for mongoose"
 	, "version":  "0.0.1"
 	, "author": "Fabrizio Ruggeri"
-	, "dependencies": { 
+	, "devDependencies":{
+						"vows" 	: "0.5.13",
 						"mongoose": ">=2.0.0"
-						}
+					}
 	, "keywords": [ "mongoose", "mongo", "mongodb", "alias", "field" ]
 	, "engines": { 
 					"node": ">=0.4.0" 
