@@ -1,5 +1,5 @@
 { 
-	"name": "mongoose-aliasfield"
+	  "name": "mongoose-aliasfield"
 	, "description":  "Field alias support for mongoose"
 	, "version":  "0.0.1"
 	, "author": "Fabrizio Ruggeri"
@@ -8,10 +8,10 @@
 						}
 	, "keywords": [ "mongoose", "mongo", "mongodb", "alias", "field" ]
 	, "engines": { 
-					"node": ">= 0.4.0" 
+					"node": ">=0.4.0" 
 					}
 	, "main": "./index.js"
-	 "repository": {
+	,"repository": {
         "type": "git"
       , "url": "git://github.com/ramiel/Alias-Field-Mongoose-plugin.git"
     }
