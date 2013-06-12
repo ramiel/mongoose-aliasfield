@@ -15,5 +15,8 @@
 	,"repository": {
         "type": "git"
       , "url": "git://github.com/ramiel/Alias-Field-Mongoose-plugin.git"
-    }
+    },
+    "scripts": {
+ 		"test": "vows --spec tests/*.js"
+	}
 }
