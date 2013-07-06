@@ -12,6 +12,7 @@
 					"node": ">=0.4.0" 
 					}
 	, "main": "./index.js"
+	,"homepage": "http://ramielcreations.wordpress.com/projects/alias-fields-for-mongoose/"
 	,"repository": {
         "type": "git"
       , "url": "git://github.com/ramiel/Alias-Field-Mongoose-plugin.git"
