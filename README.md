@@ -1,7 +1,7 @@
 mongoose-aliasfield
 ===================
 
-Discover on [Ramiel's creations](http://www.ramielcreations.com/projects/alias-fields-for-mongoose/ "Ramiel's creations page")
+Discover on [Ramiel's creations](http://www.ramielcreations.com/projects/alias-fields-plugin-for-mongoose/ "Ramiel's creations page")
 
 This plugin let you add a `alias` key to your schema and create getter and setter for your field using that alternate name.
 
