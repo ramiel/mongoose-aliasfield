@@ -8,6 +8,16 @@ This plugin let you add a `alias` key to your schema and create getter and sette
 Plugin is intended to write short-keys for you documents on the DB but let you use long, descriptive name when reading fetched documents.
 This will result in less storage needed to memorize your data having no need to remember short key meanings.
 
+## Installation
+
+To install it in your node.js project
+
+```
+npm install mongoose-aliasfield
+```
+
+or add it to your package.json dependencies
+
 ## Schema Example
 
 Take this schema as example:
