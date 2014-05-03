@@ -1,7 +1,7 @@
 { 
 	  "name": "mongoose-aliasfield"
 	, "description":  "Field alias support for mongoose"
-	, "version":  "0.0.2"
+	, "version":  "0.0.3"
 	, "author": "Fabrizio Ruggeri"
 	, "devDependencies":{
 						"vows" 	: "0.5.13",
@@ -15,7 +15,7 @@
 	,"homepage": "http://www.ramielcreations.com/projects/alias-fields-plugin-for-mongoose/"
 	,"repository": {
         "type": "git"
-      , "url": "git://github.com/ramiel/Alias-Field-Mongoose-plugin.git"
+      , "url": "git://github.com/ramiel/mongoose-aliasfield.git"
     },
     "scripts": {
  		"test": "vows --spec tests/*.js"
