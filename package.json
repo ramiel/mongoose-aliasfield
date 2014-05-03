@@ -2,7 +2,11 @@
 	  "name": "mongoose-aliasfield"
 	, "description":  "Field alias support for mongoose"
 	, "version":  "0.0.3"
-	, "author": "Fabrizio Ruggeri"
+	, "author": { 
+		"name" : "Fabrizio Ruggeri"
+		, "email" : "fabrizio.ruggeri@gmail.com"
+		, "url" : "http://www.ramielcreations.com/"
+	}
 	, "devDependencies":{
 						"vows" 	: "0.5.13",
 						"mongoose": ">=2.0.0"
