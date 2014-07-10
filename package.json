@@ -8,13 +8,13 @@
 		, "url" : "http://www.ramielcreations.com/"
 	}
 	, "devDependencies":{
-						"vows" 	: "0.5.13",
-						"mongoose": ">=2.0.0"
-					}
+		"vows" 	: "0.5.13",
+		"mongoose": ">=2.0.0"
+	}
 	, "keywords": [ "mongoose", "mongo", "mongodb", "alias", "field" ]
 	, "engines": { 
-					"node": ">=0.4.0" 
-					}
+		"node": ">=0.4.0" 
+	}
 	, "main": "./index.js"
 	,"homepage": "http://www.ramielcreations.com/projects/alias-fields-plugin-for-mongoose/"
 	,"repository": {
