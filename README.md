@@ -76,7 +76,7 @@ var user_profile = person.profile;
 You'll be able to obtain even an aliased description of object as i the example below
 
 ```
-Person.find({'name': 'Jhon'}, function(err,people){
+Person.find({'n': 'Jhon'}, function(err,people){
 	console.log( people.toAliasedFieldsObject() );
 });
 
