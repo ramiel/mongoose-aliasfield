@@ -1,7 +1,7 @@
 {
   "name": "mongoose-aliasfield",
   "description": "Field alias support for mongoose",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": {
     "name": "Fabrizio Ruggeri",
     "email": "fabrizio.ruggeri@gmail.com",
@@ -9,6 +9,8 @@
   },
   "devDependencies": {
     "chai": "^2.2.0",
+    "grunt": "^0.4.5",
+    "grunt-mocha-cov": "^0.4.0",
     "mocha": "^2.2.1",
     "mongoose": ">=2.0.0"
   },
@@ -30,5 +32,16 @@
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha tests/*.js"
+  },
+  "config": {
+    "blanket": {
+      "pattern": [
+        "lib"
+      ],
+      "data-cover-never": [
+        "node_modules",
+        "tests"
+      ]
+    }
   }
 }
