@@ -14,7 +14,9 @@ describe('Aliased fields',function(){
     });
 
     after(function(done){
-        mongoose.disconnect(done);
+        mongoose.connection.db.dropDatabase(function(err, result) {
+            mongoose.disconnect(done);
+        });
     });
 
     describe('creating a test schema with aliased fields',function(){
@@ -75,6 +77,51 @@ describe('Aliased fields',function(){
             });
 
         });
+    });
+
+    describe('creating a test schema with an external reference',function(){
+
+        before(function create_schema_with_reference(done){
+            this.Person = null;
+            this.parent = null;
+            var PersonSchema = new Schema({
+                'n' : {'type' : String, 'required' : true, alias: 'name'},
+                'c' : {'type': Schema.Types.ObjectId, ref: 'person', alias: 'child' }
+                
+            });
+            PersonSchema.plugin(fieldsAliasPlugin);
+            this.Person = mongoose.model('person', PersonSchema);
+
+            var children = new this.Person({name: 'Tim'});
+            
+            children.save(function(err){
+                if(err) return done(err);
+                this.parent = new this.Person({name: 'Mike', child: children._id });
+                this.parent.save(done);
+            }.bind(this));
+        });
+
+        it('using population aliased fields are mantained',function(done){
+            this.found_parent = null;
+            this.Person
+                .findOne({n: 'Mike'})
+                .populate('c')
+                .exec(function(err, person){
+                    if(err) return done(err);
+                    this.found_parent = person;
+                    assert.isFunction(person.toAliasedFieldsObject);
+                    assert.isFunction(person.child.toAliasedFieldsObject);
+                    assert.equal(person.name, 'Mike');
+                    assert.equal(person.child.name, 'Tim');
+                    done();
+                }.bind(this));
+        });
+
+        it('applying "toAliasedFieldsObject" to referenced model is possible',function(){
+            var t = this.found_parent.child.toAliasedFieldsObject();
+            assert.equal(t.name, 'Tim');
+        });
+
     });
 
 });
