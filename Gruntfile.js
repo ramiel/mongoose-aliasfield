@@ -19,9 +19,8 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-mocha-cov');
 
-  grunt.registerTask('travis', ['mochacov:coverage']);
-  if(process.env.TRAVIS || true){
-    grunt.registerTask('test', ['mochacov:test','travis']);
+  if(process.env.TRAVIS){
+    grunt.registerTask('test', ['mochacov:test','mochacov:coverage']);
   }else{
     grunt.registerTask('test', ['mochacov:test']);
   }
