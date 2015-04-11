@@ -3,9 +3,7 @@ module.exports = function(grunt) {
     mochacov: {
       coverage: {
         options: {
-          coveralls: {
-            repoToken: 'eyho4zXOZDH8j7krQc6Neg0jox4jTcxB7'
-          }
+          coveralls: true
         }
       },
       test: {
@@ -22,7 +20,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-mocha-cov');
 
   grunt.registerTask('travis', ['mochacov:coverage']);
-  if(process.env.TRAVIS){
+  if(process.env.TRAVIS || true){
     grunt.registerTask('test', ['mochacov:test','travis']);
   }else{
     grunt.registerTask('test', ['mochacov:test']);

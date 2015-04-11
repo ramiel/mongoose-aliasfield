@@ -4,6 +4,7 @@ mongoose-aliasfield
 [![Build Status](https://travis-ci.org/ramiel/mongoose-aliasfield.svg?branch=master)](https://travis-ci.org/ramiel/mongoose-aliasfield)
 [![Dependency Status](https://david-dm.org/ramiel/mongoose-aliasfield.svg)](https://david-dm.org/ramiel/mongoose-aliasfield)
 [![devDependency Status](https://david-dm.org/ramiel/mongoose-aliasfield/dev-status.svg)](https://david-dm.org/ramiel/mongoose-aliasfield#info=devDependencies)
+[![Coverage Status](https://coveralls.io/repos/ramiel/mongoose-aliasfield/badge.svg)](https://coveralls.io/r/ramiel/mongoose-aliasfield)
 
 Discover on [Ramiel's creations](http://www.ramielcreations.com/projects/alias-fields-plugin-for-mongoose/ "Ramiel's creations page")
 
