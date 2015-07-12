@@ -4,7 +4,7 @@ mongoose-aliasfield
 [![Build Status](https://travis-ci.org/ramiel/mongoose-aliasfield.svg?branch=master)](https://travis-ci.org/ramiel/mongoose-aliasfield)
 [![Dependency Status](https://david-dm.org/ramiel/mongoose-aliasfield.svg)](https://david-dm.org/ramiel/mongoose-aliasfield)
 [![devDependency Status](https://david-dm.org/ramiel/mongoose-aliasfield/dev-status.svg)](https://david-dm.org/ramiel/mongoose-aliasfield#info=devDependencies)
-[![Coverage Status](https://coveralls.io/repos/ramiel/mongoose-aliasfield/badge.svg)](https://coveralls.io/r/ramiel/mongoose-aliasfield)
+[![Coverage Status](https://coveralls.io/repos/ramiel/mongoose-aliasfield/badge.svg?branch=master&service=github)](https://coveralls.io/github/ramiel/mongoose-aliasfield?branch=master)
 
 Discover on [Ramiel's creations](http://www.ramielcreations.com/projects/alias-fields-plugin-for-mongoose/ "Ramiel's creations page")
 
@@ -80,9 +80,9 @@ var user_profile = person.profile;
 
 You'll be able to obtain even an aliased description of object as i the example below
 
-```
-Person.find({'n': 'Jhon'}, function(err,people){
-	console.log( people.toAliasedFieldsObject() );
+```javascript
+Person.findOne({'n': 'Jhon'}, function(err,person){
+	console.log( person.toAliasedFieldsObject() );
 });
 
 ```
@@ -97,6 +97,17 @@ Your models gain a method called `toAliasedFieldsObject` which return a long-des
 		'phone_number'	: '051-123456 78'
 	}
 }
+```
+
+The same is applyable to an array of results
+
+```javascript
+Person.find({}, function(err,people){
+	people = people.map(function(p){
+		return p.toAliasedFieldsObject();
+	});
+});
+
 ```
 
 ## Author
