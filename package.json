@@ -43,5 +43,8 @@
         "tests"
       ]
     }
+  },
+  "dependencies": {
+    "lodash": "^4.13.1"
   }
 }

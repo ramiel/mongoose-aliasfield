@@ -110,6 +110,67 @@ Person.find({}, function(err,people){
 
 ```
 
+## Utilities
+
+### Transform between representations
+
+Sometimes you want to do some operation but you have just the aliased representation of an instance. Consider the following example:
+
+```js
+var PersonSchema = new Schema({
+    n : {type : String, required : true, alias: 'name'},
+    a : {
+        s: {type: String, alias: 'address.street' },
+        d: {type: Date, alias: 'address.date'}
+    },
+    likes: {type: Number}
+    
+});
+PersonSchema.plugin(fieldsAliasPlugin);
+this.Person = mongoose.model('person', PersonSchema);
+```
+
+let's say you want to do an update
+
+```js
+var data = {
+	name: 'John',
+	address: {
+		street: 'Avenue ...',
+		date: new Date()
+	},
+    likes: 5
+}
+Person.update({name: 'John'}, data, function(){
+	...
+});
+```
+This won't work because mongoose is not able to understand the aliases.    
+Your model has a static method which help you to move from an aliased representation of your data to the one you have on the database.   
+You can write
+
+```js
+Person.update({name: 'John'}, Person.toOriginalFieldsObject(data), function(){
+    ...
+});
+```
+Edge case: you cannot transform mixed representation. All the properties which have an alias must be represented with the alias.    
+In our example this won't work:
+
+```js
+var data = {
+    name: 'John',
+    address: {
+        s: 'Avenue ...',
+        d: new Date()
+    },
+    likes: 5
+}
+Person.toOriginalFieldsObject(data); // This will result in an invalid object
+```
+here we are mixing `address` (aliased) and `s` (not aliased), which is not permitted.
+`toOriginalFieldsObject` can be expensive, so use it only if you're forced to
+
 ## Author
 
 Fabrizio 'ramiel' Ruggeri

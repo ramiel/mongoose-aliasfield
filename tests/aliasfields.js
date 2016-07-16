@@ -124,4 +124,51 @@ describe('Aliased fields',function(){
 
     });
 
+    describe('Transforming aliased properties to original names', function(){
+        before(function(){
+            var PersonSchema = new Schema({
+                n : {type : String, required : true, alias: 'name'},
+                a : {
+                    s: {type: String, alias: 'address.street' },
+                    d: {type: Date, alias: 'address.date'}
+                },
+                likes: {type: Number}
+                
+            });
+            PersonSchema.plugin(fieldsAliasPlugin);
+            this.Person = mongoose.model('person_transforming', PersonSchema);
+        });
+
+        it('works with primitive', function(){
+            var ex1 = {name: 'John', address: {street: 'Rue Morand'}};
+            var flatten = this.Person.toOriginalFieldsObject(ex1);
+            assert.deepEqual(flatten, { n: 'John', a: {s: 'Rue Morand'} });
+        });
+
+        it('works with dates', function(){
+            var date = new Date();
+            var ex2 = {name: 'John', address: {street: 'Rue Morand', date: date}};
+            var flatten = this.Person.toOriginalFieldsObject(ex2);
+            assert.deepEqual(flatten, { n: 'John', a: {s: 'Rue Morand', d: date}});
+        });
+
+        it('preserves null values', function(){
+            var ex3 = {name: 'John', address: {street: 'Rue Morand', date: null}};
+            var flatten = this.Person.toOriginalFieldsObject(ex3);
+            assert.deepEqual(flatten, { n: 'John', a: {s: 'Rue Morand', d: null}});
+        });
+
+        it('works with properties which have no alias', function(){
+            var ex4 = {name: 'John', address: {street: 'Rue Morand'},likes: 5};
+            var flatten = this.Person.toOriginalFieldsObject(ex4);
+            assert.deepEqual(flatten, { n: 'John', a: {s: 'Rue Morand'}, likes: 5 });
+        });
+
+        it('do not works with mixed representations', function(){
+            var ex4 = {n: 'John', address: {s: 'Rue Morand'},likes: 5};
+            var flatten = this.Person.toOriginalFieldsObject(ex4);
+            assert.notEqual(flatten, { n: 'John', a: {s: 'Rue Morand'}, likes: 5 });
+        });
+    })
+
 });
