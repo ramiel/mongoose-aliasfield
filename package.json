@@ -1,7 +1,7 @@
 {
   "name": "mongoose-aliasfield",
   "description": "Field alias support for mongoose",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "author": {
     "name": "Fabrizio Ruggeri",
     "email": "fabrizio.ruggeri@gmail.com",
