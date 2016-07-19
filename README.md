@@ -4,7 +4,7 @@ mongoose-aliasfield
 [![Build Status](https://travis-ci.org/ramiel/mongoose-aliasfield.svg?branch=master)](https://travis-ci.org/ramiel/mongoose-aliasfield)
 [![Dependency Status](https://david-dm.org/ramiel/mongoose-aliasfield.svg)](https://david-dm.org/ramiel/mongoose-aliasfield)
 [![devDependency Status](https://david-dm.org/ramiel/mongoose-aliasfield/dev-status.svg)](https://david-dm.org/ramiel/mongoose-aliasfield#info=devDependencies)
-[![Coverage Status](https://coveralls.io/repos/ramiel/mongoose-aliasfield/badge.svg)](https://coveralls.io/r/ramiel/mongoose-aliasfield)
+[![Coverage Status](https://coveralls.io/repos/ramiel/mongoose-aliasfield/badge.svg?branch=master&service=github)](https://coveralls.io/github/ramiel/mongoose-aliasfield?branch=master)
 
 Discover on [Ramiel's creations](http://www.ramielcreations.com/projects/alias-fields-plugin-for-mongoose/ "Ramiel's creations page")
 
@@ -80,9 +80,9 @@ var user_profile = person.profile;
 
 You'll be able to obtain even an aliased description of object as i the example below
 
-```
-Person.find({'n': 'Jhon'}, function(err,people){
-	console.log( people.toAliasedFieldsObject() );
+```javascript
+Person.findOne({'n': 'Jhon'}, function(err,person){
+	console.log( person.toAliasedFieldsObject() );
 });
 
 ```
@@ -98,6 +98,78 @@ Your models gain a method called `toAliasedFieldsObject` which return a long-des
 	}
 }
 ```
+
+The same is applyable to an array of results
+
+```javascript
+Person.find({}, function(err,people){
+	people = people.map(function(p){
+		return p.toAliasedFieldsObject();
+	});
+});
+
+```
+
+## Utilities
+
+### Transform between representations
+
+Sometimes you want to do some operation but you have just the aliased representation of an instance. Consider the following example:
+
+```js
+var PersonSchema = new Schema({
+    n : {type : String, required : true, alias: 'name'},
+    a : {
+        s: {type: String, alias: 'address.street' },
+        d: {type: Date, alias: 'address.date'}
+    },
+    likes: {type: Number}
+    
+});
+PersonSchema.plugin(fieldsAliasPlugin);
+this.Person = mongoose.model('person', PersonSchema);
+```
+
+let's say you want to do an update
+
+```js
+var data = {
+	name: 'John',
+	address: {
+		street: 'Avenue ...',
+		date: new Date()
+	},
+    likes: 5
+}
+Person.update({name: 'John'}, data, function(){
+	...
+});
+```
+This won't work because mongoose is not able to understand the aliases.    
+Your model has a static method which help you to move from an aliased representation of your data to the one you have on the database.   
+You can write
+
+```js
+Person.update({name: 'John'}, Person.toOriginalFieldsObject(data), function(){
+    ...
+});
+```
+Edge case: you cannot transform mixed representation. All the properties which have an alias must be represented with the alias.    
+In our example this won't work:
+
+```js
+var data = {
+    name: 'John',
+    address: {
+        s: 'Avenue ...',
+        d: new Date()
+    },
+    likes: 5
+}
+Person.toOriginalFieldsObject(data); // This will result in an invalid object
+```
+here we are mixing `address` (aliased) and `s` (not aliased), which is not permitted.
+`toOriginalFieldsObject` can be expensive, so use it only if you're forced to
 
 ## Author
 
