@@ -44,7 +44,7 @@ describe('Aliased fields',function(){
             assert.isFunction(t.toAliasedFieldsObject);
         });
 
-        
+
 
         describe('after generating a model instance',function(){
 
@@ -87,13 +87,13 @@ describe('Aliased fields',function(){
             var PersonSchema = new Schema({
                 'n' : {'type' : String, 'required' : true, alias: 'name'},
                 'c' : {'type': Schema.Types.ObjectId, ref: 'person', alias: 'child' }
-                
+
             });
             PersonSchema.plugin(fieldsAliasPlugin);
             this.Person = mongoose.model('person', PersonSchema);
 
             var children = new this.Person({name: 'Tim'});
-            
+
             children.save(function(err){
                 if(err) return done(err);
                 this.parent = new this.Person({name: 'Mike', child: children._id });
@@ -133,7 +133,7 @@ describe('Aliased fields',function(){
                     d: {type: Date, alias: 'address.date'}
                 },
                 likes: {type: Number}
-                
+
             });
             PersonSchema.plugin(fieldsAliasPlugin);
             this.Person = mongoose.model('person_transforming', PersonSchema);
@@ -168,6 +168,37 @@ describe('Aliased fields',function(){
             var ex4 = {n: 'John', address: {s: 'Rue Morand'},likes: 5};
             var flatten = this.Person.toOriginalFieldsObject(ex4);
             assert.notEqual(flatten, { n: 'John', a: {s: 'Rue Morand'}, likes: 5 });
+        });
+    })
+
+    describe('Transforming aliased property to original name', function(){
+        before(function(){
+            var PersonSchema = new Schema({
+                n : {type : String, required : true, alias: 'name'},
+                a : {
+                    s: {type: String, alias: 'address.street' },
+                    d: {type: Date, alias: 'address.date'}
+                },
+                likes: {type: Number}
+
+            });
+            PersonSchema.plugin(fieldsAliasPlugin);
+            this.Person = mongoose.model('aliased_property_test', PersonSchema);
+        });
+
+        it('works top level property', function(){
+            var flatten = this.Person.toOriginalFieldFromAlias('name');
+            assert.equal(flatten, 'n');
+        });
+
+        it('works sub level property', function(){
+            var flatten = this.Person.toOriginalFieldFromAlias('address.street');
+            assert.equal(flatten, 'a.s');
+        });
+
+        it('works non-aliased property', function(){
+            var flatten = this.Person.toOriginalFieldFromAlias('likes');
+            assert.equal(flatten, 'likes');
         });
     })
 
