@@ -1,18 +1,29 @@
 {
   "name": "mongoose-aliasfield",
   "description": "Field alias support for mongoose",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": {
     "name": "Fabrizio Ruggeri",
     "email": "fabrizio.ruggeri@gmail.com",
     "url": "http://www.ramielcreations.com/"
   },
+  "license": "GPL-2.0",
+  "main": "./index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha tests/*.js"
+  },
+  "dependencies": {
+    "lodash": "^4.17.3"
+  },
   "devDependencies": {
-    "chai": "^2.2.0",
-    "grunt": "^0.4.5",
+    "chai": "^3.5.0",
+    "grunt": "^1.0.1",
     "grunt-mocha-cov": "^0.4.0",
-    "mocha": "^2.2.1",
-    "mongoose": ">=2.0.0"
+    "mocha": "^3.2.0",
+    "mongoose": "^4.7.5"
+  },
+  "peerDependencies": {
+    "mongoose": ">=2"
   },
   "keywords": [
     "mongoose",
@@ -21,17 +32,10 @@
     "alias",
     "field"
   ],
-  "engines": {
-    "node": ">=0.4.0"
-  },
-  "main": "./index.js",
   "homepage": "http://www.ramielcreations.com/projects/alias-fields-plugin-for-mongoose/",
   "repository": {
     "type": "git",
     "url": "git://github.com/ramiel/mongoose-aliasfield.git"
-  },
-  "scripts": {
-    "test": "./node_modules/.bin/mocha tests/*.js"
   },
   "config": {
     "blanket": {
@@ -44,7 +48,7 @@
       ]
     }
   },
-  "dependencies": {
-    "lodash": "^4.13.1"
+  "engines": {
+    "node": ">=0.4.0"
   }
 }

@@ -79,6 +79,26 @@ describe('Aliased fields',function(){
         });
     });
 
+    describe('creating a test schema with array properties',function(){
+
+        before(function create_schema(done){
+            var TestSchema = new Schema({
+                't' : [{'type': Date, 'default': new Date(), 'alias': 'timestamp'}]
+            });
+            TestSchema.plugin(fieldsAliasPlugin);
+            this.TestModel = mongoose.model('testarrays', TestSchema);
+            this.t = new this.TestModel({
+                'timestamp' : [new Date()]
+            });
+            this.t.save(done);
+        });
+
+        it('has aliased properties', function(){
+            var i = this.t.toAliasedFieldsObject();
+            assert.property (i, 'timestamp');
+        });
+    });
+
     describe('creating a test schema with an external reference',function(){
 
         before(function create_schema_with_reference(done){
