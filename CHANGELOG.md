@@ -1,4 +1,4 @@
-# Next
+# 0.3.0
 
 - Fix (#9)[https://github.com/ramiel/mongoose-aliasfield/issues/9]: now property defined in array can be correctly aliased
 
