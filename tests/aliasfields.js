@@ -144,7 +144,7 @@ describe('Aliased fields',function(){
 
     });
 
-    describe('Transforming aliased properties to original names', function(){
+    describe('Transforming aliased objects to original names', function(){
         before(function(){
             var PersonSchema = new Schema({
                 n : {type : String, required : true, alias: 'name'},

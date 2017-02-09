@@ -114,6 +114,8 @@ Person.find({}, function(err,people){
 
 ### Transform between representations
 
+#### toOriginalFieldsObject
+
 Sometimes you want to do some operation but you have just the aliased representation of an instance. Consider the following example:
 
 ```js
@@ -169,7 +171,17 @@ var data = {
 Person.toOriginalFieldsObject(data); // This will result in an invalid object
 ```
 here we are mixing `address` (aliased) and `s` (not aliased), which is not permitted.
-`toOriginalFieldsObject` can be expensive, so use it only if you're forced to
+`toOriginalFieldsObject` can be expensive, so use it only if you're forced to.
+
+#### toOriginalFieldFromAlias
+
+You can transform even a single field. Given the same schema as before
+
+```js
+    const flatten = Person.toOriginalFieldFromAlias('address.street');
+    // flatten is
+    // 'a.s'
+```
 
 ## Author
 
