@@ -1,6 +1,7 @@
 mongoose-aliasfield
 ===================
 
+[![gitcheese.com](https://s3.amazonaws.com/gitcheese-ui-master/images/badge.svg)](https://www.gitcheese.com/donate/users/324687/repos/3234125)
 [![Build Status](https://travis-ci.org/ramiel/mongoose-aliasfield.svg?branch=master)](https://travis-ci.org/ramiel/mongoose-aliasfield)
 [![Dependency Status](https://david-dm.org/ramiel/mongoose-aliasfield.svg)](https://david-dm.org/ramiel/mongoose-aliasfield)
 [![devDependency Status](https://david-dm.org/ramiel/mongoose-aliasfield/dev-status.svg)](https://david-dm.org/ramiel/mongoose-aliasfield#info=devDependencies)
