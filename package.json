@@ -12,9 +12,6 @@
   "scripts": {
     "test": "./node_modules/.bin/mocha tests/*.js"
   },
-  "dependencies": {
-    "lodash": "^4.17.3"
-  },
   "devDependencies": {
     "chai": "^3.5.0",
     "grunt": "^1.0.1",
