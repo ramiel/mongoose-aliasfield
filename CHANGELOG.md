@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.5
+
+- Fix a bug on node 0.10
+
 ## 0.3.4
 
 - Remove dependency to lodash
