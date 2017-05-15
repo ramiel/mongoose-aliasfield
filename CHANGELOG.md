@@ -1,6 +1,6 @@
 # Changelog
 
-## Next
+## 0.3.4
 
 - Remove dependency to lodash
 
