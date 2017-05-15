@@ -9,7 +9,6 @@ var fieldsAliasPlugin = require('../lib/field-alias-plugin'),
 describe('Aliased fields',function(){
 
     before(function connection(done){
-        mongoose.Promise = Promise || mongoose.Promise;
         mongoose.connection.on('open',done);
         mongoose.connection.on('error',done);
         mongoose.connect('mongodb://127.0.0.1/testing');
