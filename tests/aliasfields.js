@@ -5,6 +5,7 @@ var fieldsAliasPlugin = require('../lib/field-alias-plugin'),
     chai = require('chai'),
     assert = chai.assert;
 
+
 describe('Aliased fields',function(){
 
     before(function connection(done){
@@ -30,8 +31,8 @@ describe('Aliased fields',function(){
                 },
                 'a':{
                     'b':{
-                        'c': {type:Number, alias:'aldo.bice.carlo'},
-                        'd': {type:String, alias:'aldo.bice.david'}
+                        'c': {type:Number, alias:'depthly.carlo'},
+                        'd': {type:String, alias:'depthly.david'}
                     }
                 }
             });
@@ -53,7 +54,7 @@ describe('Aliased fields',function(){
                     'timestamp' : new Date(),
                     'v'     : 15,
                     'external.minimum': 30,
-                    'aldo.bice.david' :'hello'
+                    'depthly.david' :'hello'
                 });
                 this.t.save(done);
             });
@@ -61,7 +62,7 @@ describe('Aliased fields',function(){
             it('has aliased properties', function(){
                 var instance = this.t;
                 assert.equal(instance.external.minimum, 30);
-                assert.equal(instance.aldo.bice.david, 'hello');
+                assert.equal(instance.depthly.david, 'hello');
                 var i = instance.toAliasedFieldsObject();
                 assert.property (i, 'timestamp');
             });
@@ -73,7 +74,7 @@ describe('Aliased fields',function(){
 
             it('hasn\'t getter for properties which have not a value',function(){
                 var i = this.t.toAliasedFieldsObject();
-                assert.isUndefined(i.aldo.bice.carlo);
+                assert.isUndefined(i.depthly.carlo);
             });
 
         });
