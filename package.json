@@ -1,7 +1,7 @@
 {
   "name": "mongoose-aliasfield",
   "description": "Field alias support for mongoose",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "author": {
     "name": "Fabrizio Ruggeri",
     "email": "fabrizio.ruggeri@gmail.com",
@@ -13,7 +13,7 @@
     "test": "./node_modules/.bin/mocha tests/*.js"
   },
   "dependencies": {
-    "lodash": "^4.17.3"
+    "lodash.isplainobject": "^4.0.6"
   },
   "devDependencies": {
     "chai": "^3.5.0",
