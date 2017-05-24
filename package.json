@@ -34,6 +34,9 @@
     "type": "git",
     "url": "git://github.com/ramiel/mongoose-aliasfield.git"
   },
+  "bugs": {
+    "url": "https://github.com/ramiel/mongoose-aliasfield/issues/new"
+  },
   "config": {
     "blanket": {
       "pattern": [
