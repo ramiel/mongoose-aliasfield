@@ -14,6 +14,10 @@ This plugin let you add a `alias` key to your schema and create getter and sette
 Plugin is intended to write short-keys for you documents on the DB but let you use long, descriptive name when reading fetched documents.
 This will result in less storage needed to memorize your data having no need to remember short key meanings.
 
+## Note
+
+**IMPORTANT**: Starting from version 4.10.0 of mongoose, a feature similar to the one provided by this plugin has been developed in the core library. Even if the implementation are not exactly the same, I prefer to deprecate this plugin in favor of the core implementation. For this reason this plugin won't install anymore alongside a recent version of mongoose. If something is missing in the core implementation you should open a request on the [mongoose github page](https://github.com/Automattic/mongoose/issues).
+
 ## Installation
 
 To install it in your node.js project
